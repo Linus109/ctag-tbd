@@ -95,8 +95,6 @@ void ctagSoundProcessorbbeats::Process(const ProcessData &data)
         slow_down_B++;  // We increment a counter for Beat1 every loop, so we can decide with next loop if we generate a new valur
 
         xfade_val = process_param_float( data,cv_xFadeA_B, xFadeA_B);
-        // if( t2 % 1000000 )
-        //     printf("xfade_val: %f \n", xfade_val);
         data.buf[i*2 + processCh] = beat_val_A*(1.0-xfade_val) + beat_val_B*xfade_val;         // Mix both ByteBeats, depending on XFade-factor
     }
 }
