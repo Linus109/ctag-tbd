@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/esp-dsp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/moog/MoogLadders" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack/avr_audio_bootloader" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack/avrlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack/avrlibx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack/stm_audio_bootloader" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/components/mutable/eurorack/stmlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/simulator/Simple-Web-Server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/simulator/rtaudio" vcs="Git" />
+  </component>
+</project>

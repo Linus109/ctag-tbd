@@ -1,0 +1,20 @@
+{
+  "id": "bbeats",
+  "isStereo": false,
+  "name": "BBeats",
+  "hint": "ByteBeats with Xfade",
+    "params":
+    [
+       {"id":"beatA_stop","name":"BeatA_stop","type":"bool"},
+       {"id":"beatA_reset_on_stop","name":"BeatA_reset_on_stop","type":"bool"},
+       {"id":"beatB_stop","name":"BeatB_stop","type":"bool"},
+       {"id":"beatB_reset_on_stop","name":"BeatB_reset_on_stop","type":"bool"},
+       {"id":"beatA_backwards","name":"BeatA_backwards","type":"bool"},
+       {"id":"beatB_backwards","name":"BeatB_backwards","type":"bool"},
+       {"id":"beatA_select","name":"BeatA_select","type":"int","min":0,"max":4095,"step":1},
+       {"id":"beatB_select","name":"BeatB_select","type":"int","min":0,"max":4095,"step":1},
+       {"id":"beatA_pitch","name":"BeatA_pitch","type":"int","min":0,"max":4095,"step":1},
+       {"id":"beatB_pitch","name":"BeatB_pitch","type":"int","min":0,"max":4095,"step":1},
+       {"id":"xFadeA_B","name":"XFadeA_B","type":"int","min":0,"max":4095,"step":1}
+   ]
+}

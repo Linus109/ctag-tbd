@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set (Boost_INCLUDE_DIR "C:/boost/include/boost-1_74") # MB 20201118
 
 project(tbd-sim)
 
@@ -143,7 +144,10 @@ add_executable(tbd-sim ${SRC_FILES} ${SRC_FILES2} ${RAPIDJSON_FILES} ${TINYWAV_F
 target_link_libraries(tbd-sim simple-web-server)
 target_link_libraries(tbd-sim rtaudio ctagsp mutable esp-dsp)
 target_link_libraries(tbd-sim ${Boost_LIBRARIES})
-target_include_directories(tbd-sim PRIVATE ${Boost_INCLUDE_DIR})
+if(WIN32)
+    target_link_libraries(tbd-sim ws2_32 wsock32)
+endif()
+# target_include_directories(tbd-sim PRIVATE ${Boost_INCLUDE_DIR})
 target_include_directories(tbd-sim PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../components/ctagSoundProcessor)
 target_include_directories(tbd-sim PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/gen_include)
 target_include_directories(tbd-sim PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/rtaudio)

@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="RtAudio"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\rtaudio\;CMake Files\rtaudio\cmake\;CMake Files\rtaudio\tests\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\rtaudio\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\boost\;CMake Files\..\..\boost\lib\;CMake Files\..\..\boost\lib\cmake\;CMake Files\..\..\boost\lib\cmake\Boost-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_headers-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\;CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\;CMake Files\..\components\;CMake Files\..\components\ctagSoundProcessor\;CMake Files\..\components\mutable\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rtaudio">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/librtaudiod.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D__WINDOWS_WASAPI__"/>
+					<Add option="-DRTAUDIO_EXPORT"/>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 rtaudio"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rtaudio/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/librtaudiod.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D__WINDOWS_WASAPI__"/>
+					<Add option="-DRTAUDIO_EXPORT"/>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 rtaudio/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Experimental">
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 Experimental"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Continuous">
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 Continuous"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nightly">
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 Nightly"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="uninstall">
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 uninstall"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="apinames">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/apinames.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 apinames"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="apinames/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/apinames.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 apinames/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="audioprobe">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/audioprobe.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 audioprobe"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="audioprobe/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/audioprobe.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 audioprobe/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testall">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/testall.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 testall"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testall/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/testall.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 testall/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="record">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/record.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 record"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="record/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/record.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 record/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playsaw">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/playsaw.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 playsaw"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playsaw/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/playsaw.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 playsaw/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="duplex">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/duplex.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 duplex"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="duplex/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/duplex.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 duplex/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playraw">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/playraw.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 playraw"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playraw/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/playraw.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 playraw/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teststops">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/teststops.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 teststops"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teststops/fast">
+				<Option output="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/teststops.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DRAPIDJSON_ALLOCATOR_DEFAULT_CHUNK_CAPACITY=4096"/>
+					<Add option="-DRAPIDJSON_HAS_STDSTRING=1"/>
+					<Add option="-DTBD_SIM=1"/>
+					<Add option="-DTEST"/>
+					<Add option="-DCONFIG_DSP_ANSI=1"/>
+					<Add option="-DHAVE_GETTIMEOFDAY"/>
+					<Add option="-D__RTAUDIO_DEBUG__"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/include"/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/.."/>
+					<Add directory="C:/ctag-tbd/simulator/rtaudio/tests/../include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 teststops/fast"/>
+					<CompileFile command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/mingw32/bin/mingw32-make.exe -f &quot;C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/RtAudio.cpp">
+			<Option target="rtaudio"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/RtAudio.h">
+			<Option target="rtaudio"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/rtaudio_c.cpp">
+			<Option target="rtaudio"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/rtaudio_c.h">
+			<Option target="rtaudio"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/apinames.cpp">
+			<Option target="apinames"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/audioprobe.cpp">
+			<Option target="audioprobe"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/duplex.cpp">
+			<Option target="duplex"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/playraw.cpp">
+			<Option target="playraw"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/playsaw.cpp">
+			<Option target="playsaw"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/record.cpp">
+			<Option target="record"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/testall.cpp">
+			<Option target="testall"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/teststops.cpp">
+			<Option target="teststops"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\rtaudio\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/rtaudio.pc.in">
+			<Option virtualFolder="CMake Files\rtaudio\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/cmake/RtAudioConfigUninstall.cmake.in">
+			<Option virtualFolder="CMake Files\rtaudio\cmake\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/rtaudio/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\rtaudio\tests\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/cmake-build-debug/rtaudio/RtAudioConfig.cmake.in">
+			<Option virtualFolder="CMake Files\cmake-build-debug\rtaudio\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/BoostDetectToolset-1.74.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/Boost-1.74.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/Boost-1.74.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_headers-1.74.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_headers-1.74.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-d-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-d-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-s-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-sd-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_system-1.74.0/libboost_system-variant-mgw8-mt-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/boost_thread-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/boost_thread-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-d-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-d-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-s-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-sd-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-mgw8-mt-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/boost_chrono-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/boost_chrono-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-d-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-d-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-s-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-sd-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_chrono-1.74.0/libboost_chrono-variant-mgw8-mt-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_chrono-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/boost_filesystem-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/boost_filesystem-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-d-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-d-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-s-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-sd-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_filesystem-1.74.0/libboost_filesystem-variant-mgw8-mt-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_filesystem-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/boost_program_options-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/boost_program_options-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-d-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-d-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-s-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-sd-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-x32-1_74-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../../boost/lib/cmake/boost_program_options-1.74.0/libboost_program_options-variant-mgw8-mt-x32-1_74-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\boost\lib\cmake\boost_program_options-1.74.0\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../components/ctagSoundProcessor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\..\components\ctagSoundProcessor\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../components/ctagSoundProcessor/ctagSoundProcessorFactory.hpp.in">
+			<Option virtualFolder="CMake Files\..\components\ctagSoundProcessor\"/>
+		</Unit>
+		<Unit filename="C:/ctag-tbd/simulator/../components/mutable/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\..\components\mutable\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

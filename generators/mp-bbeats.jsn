@@ -1,0 +1,65 @@
+{
+  "activePatch": 0,
+  "patches": [
+    {
+      "name": "Default",
+      "params": [
+        {
+          "id": "beatA_stop",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatA_reset_on_stop",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatB_stop",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatB_reset_on_stop",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatA_backwards",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatB_backwards",
+          "current": 0,
+          "trig": -1
+        },
+        {
+          "id": "beatA_select",
+          "current": 2047,
+          "cv": -1
+        },
+        {
+          "id": "beatB_select",
+          "current": 2047,
+          "cv": -1
+        },
+        {
+          "id": "beatA_pitch",
+          "current": 2047,
+          "cv": -1
+        },
+        {
+          "id": "beatB_pitch",
+          "current": 2047,
+          "cv": -1
+        },
+        {
+          "id": "xFadeA_B",
+          "current": 2047,
+          "cv": -1
+        }
+      ]
+    }
+  ]
+}

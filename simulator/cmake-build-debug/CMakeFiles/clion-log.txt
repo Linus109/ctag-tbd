@@ -1,0 +1,11 @@
+"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\ctag-tbd\simulator
+-- Found Boost: C:/boost/lib/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.53.0") found components: system thread 
+-- Checking for module 'jack'
+--   
+-- Checking for module 'libpulse-simple'
+--   
+-- Compiling with support for: wasapi
+-- Found Boost: C:/boost/lib/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.53.0") found components: system thread filesystem program_options 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/ctag-tbd/simulator/cmake-build-debug
