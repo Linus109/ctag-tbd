@@ -3,8 +3,21 @@
 using namespace CTAG::SP;
 
 // data.buf[i * 2 + processCh] = (float)((byte)(t & 128));    // Square wave, working ok!
+
+// --- Helper function: rescale CV or Pot to integer of given range 0...max ---
+int ctagSoundProcessorbbeats::process_param( const ProcessData &data, int cv_myparm, int my_parm, int parm_range )
+{
+    return (cv_myparm != -1) ? (int)(data.cv[cv_myparm] * parm_range) : my_parm * parm_range / 4095;
+}
+// --- Helper function: rescale CV or Pot to float 0...1.0 (CV is already in correct format, we still keep it inside this method for convenience ---
+float ctagSoundProcessorbbeats::process_param_float( const ProcessData &data, int cv_myparm, int my_parm )
+{
+    return (cv_myparm != -1) ? data.cv[cv_myparm] : my_parm/4095.0;
+}
+
 void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 {
+    float xfade_val = 0;                   // Use to setup crossfade between our two bytebeats...
     static byte (*beats_P1[])(uint32_t t)  // List of Bytebeats for P1, Modify or add your own ByteBeats below!
     {
         [](uint32_t t) -> byte { return (byte)((t&128)); },                       // This is a basic square-wave, toggelling between 0 and 128
@@ -63,22 +76,28 @@ void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 
     for (uint32_t i = 0; i < bufSz; i++)
     {
-        slow_down_A_factor = 129 - (int) (beatA_pitch / 4095.0 * 128.0);
-        if (cv_beatA_pitch != -1)
-            slow_down_A_factor = 129 - (int) (cv_beatA_pitch * 128.0);
-
-        if (slow_down_A % slow_down_A_factor == 0)
+        slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128 );
+        if (slow_down_A % slow_down_A_factor == 0)      // slow_down_A is unsigned, so it wraps around on overflow!
         {
-            t1++;
-            beat_index_A = beatA_select * beatA_max_idx / 4095;
-            if (cv_beatA_select != -1)
-                beat_index_A = (int) (data.cv[cv_beatA_select] * beatA_max_idx); 
-
-            beat_val = (float)((int) beats_P1[beat_index_A](t1) - 127) / 127.0; // beat_val: private member, so we buffer the result
+            t1++;   // Increment iterator for ByteBeat1 algorithm
+            beat_index_A = process_param( data,cv_beatA_select, beatA_select, beatA_max_idx );
+            beat_val_A = (float)((int) beats_P1[beat_index_A](t1) - 127) / 127.0; // beat_val: private member, so we buffer the result
         }
-        slow_down_A++;
+        slow_down_A++;  // We increment a counter for Beat1 every loop, so we can decide with next loop if we generate a new valur
 
-        data.buf[i*2 + processCh] = beat_val;
+        slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128 );
+        if (slow_down_B % slow_down_B_factor == 0)      // slow_down_B is unsigned, so it wraps around on overflow!
+        {
+            t2++;   // Increment iterator for ByteBeat1 algorithm
+            beat_index_B = process_param( data,cv_beatB_select, beatB_select, beatB_max_idx );
+            beat_val_B = (float)((int) beats_P2[beat_index_B](t1) - 127) / 127.0; // beat_val: private member, so we buffer the result
+        }
+        slow_down_B++;  // We increment a counter for Beat1 every loop, so we can decide with next loop if we generate a new valur
+
+        xfade_val = process_param_float( data,cv_xFadeA_B, xFadeA_B);
+        // if( t2 % 1000000 )
+        //     printf("xfade_val: %f \n", xfade_val);
+        data.buf[i*2 + processCh] = beat_val_A*(1.0-xfade_val) + beat_val_B*xfade_val;         // Mix both ByteBeats, depending on XFade-factor
     }
 }
 
