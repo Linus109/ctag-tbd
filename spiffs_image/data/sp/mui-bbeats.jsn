@@ -1,20 +1,34 @@
 {
-  "id": "bbeats",
-  "isStereo": false,
-  "name": "BBeats",
-  "hint": "ByteBeats with Xfade",
-    "params":
+   "id": "bbeats", "isStereo": false, "name": "BBeats", "hint": "ByteBeats with Xfade", "params":
     [
-       {"id":"beatA_stop","name":"BeatA_stop","type":"bool"},
-       {"id":"beatA_reset_on_stop","name":"BeatA_reset_on_stop","type":"bool"},
-       {"id":"beatB_stop","name":"BeatB_stop","type":"bool"},
-       {"id":"beatB_reset_on_stop","name":"BeatB_reset_on_stop","type":"bool"},
-       {"id":"beatA_backwards","name":"BeatA_backwards","type":"bool"},
-       {"id":"beatB_backwards","name":"BeatB_backwards","type":"bool"},
-       {"id":"beatA_select","name":"BeatA_select","type":"int","min":0,"max":4095,"step":1},
-       {"id":"beatB_select","name":"BeatB_select","type":"int","min":0,"max":4095,"step":1},
-       {"id":"beatA_pitch","name":"BeatA_pitch","type":"int","min":0,"max":4095,"step":1},
-       {"id":"beatB_pitch","name":"BeatB_pitch","type":"int","min":0,"max":4095,"step":1},
-       {"id":"xFadeA_B","name":"XFadeA_B","type":"int","min":0,"max":4095,"step":1}
+      {  
+         "id": "bbeat1_params", "name": "Beat A Params", "type": "group", "params":  
+          [
+             {"id":"beatA_reset_on_stop","name":"BeatA reset on stop","type":"bool"},
+             {"id":"beatA_stop","name":"BeatA stop","type":"bool"},
+             {"id":"beatA_backwards","name":"BeatA backwards","type":"bool"},
+             
+             {"id":"beatA_select","name":"BeatA select","type":"int","min":0,"max":4095,"step":1},
+             {"id":"beatA_pitch","name":"BeatA pitch","type":"int","min":0,"max":4095,"step":1}
+          ]
+      },
+      {
+         "id": "bbeat2_params", "name": "Beat B Params", "type": "group", "params":  
+         [
+             {"id":"beatB_reset_on_stop","name":"BeatB reset on stop","type":"bool"},
+             {"id":"beatB_stop","name":"BeatB stop","type":"bool"},
+             {"id":"beatB_backwards","name":"BeatB backwards","type":"bool"},
+
+            {"id":"beatB_select","name":"BeatB select","type":"int","min":0,"max":4095,"step":1},
+            {"id":"beatB_pitch","name":"BeatB pitch","type":"int","min":0,"max":4095,"step":1}
+         ] 
+      },
+      {
+         "id": "beat_mixer", "name": "Beat Mixer", "type": "group", "params": 
+         [
+            {"id":"allow_logic_mixes","name":"Allow logic mixes","type":"bool"},
+            {"id":"xFadeA_B","name":"XFade A<=>B","type":"int","min":0,"max":4095,"step":1}
+         ]
+      }
    ]
 }
