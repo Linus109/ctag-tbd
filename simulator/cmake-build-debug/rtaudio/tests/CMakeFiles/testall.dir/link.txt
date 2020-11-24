@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\testall.dir/objects.a
-C:\MinGW\mingw32\bin\ar.exe cr CMakeFiles\testall.dir/objects.a @CMakeFiles\testall.dir\objects1.rsp
-C:\MinGW\mingw32\bin\g++.exe  -Wall -Werror -g   -Wl,--whole-archive CMakeFiles\testall.dir/objects.a -Wl,--no-whole-archive  -o testall.exe -Wl,--out-implib,libtestall.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\testall.dir\linklibs.rsp
