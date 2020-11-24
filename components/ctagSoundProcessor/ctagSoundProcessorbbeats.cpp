@@ -237,8 +237,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
       {
         beat_byte_A = (int) beats_P1[beat_index_A](t1);       // We may will also need the numeric value for logic operations on the ByteBeats
         beat_val_A = (float) ((int) beat_byte_A - 127) / 127.0; // beat_val_A: private member, so we buffer the result
+        reverse_beatA ? t1-- : t1++;   // Decrement or increment iterator for ByteBeat1 algorithm
       }
-      reverse_beatA ? t1-- : t1++;   // Decrement or increment iterator for ByteBeat1 algorithm
     }
     slow_down_A++;  // We increment a counter for Beat1 every loop, so we can decide with next loop if we generate a new valur
 
