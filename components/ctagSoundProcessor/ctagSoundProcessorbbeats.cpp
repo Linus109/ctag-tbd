@@ -70,6 +70,9 @@ inline bool ctagSoundProcessorbbeats::process_param_bool( const ProcessData &dat
     return( (bool) my_parm );
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-count-overflow"
+
 // --- Helper function: provide logic operations on bytebeats ---
 inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
 {
@@ -124,6 +127,7 @@ inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
   }
 }
 
+
 void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 {
 static uint16_t cv_counter = 0;   // A global counter for all instances, just to slow down checking of CV and controllers from GUI
@@ -155,6 +159,7 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
     [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
   };
+
   static const int beatA_max_idx = sizeof(beats_P1)/sizeof(beats_P1[0])-1;  // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
 
   // --- List of lamdas, implementing the algorithms for Bytebeat 2 ---
@@ -185,6 +190,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
   };
   static const int beatB_max_idx = sizeof(beats_P2)/sizeof(beats_P2[0])-1; // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
+
+#pragma GCC diagnostic pop
 
   // --- Read controllers from GUI or CV about every 5 millisecond and buffer results as private member variables ---
   if( ++cv_counter%220 == 0 )   // To optimize speed this is a static variable for all instances

@@ -58,3 +58,8 @@ endif ()
 #        PROPERTIES COMPILE_FLAGS
 #        -Wno-strict-aliasing
 #        )
+
+set_source_files_properties(ctagSoundProcessorbbeats.cpp
+        PROPERTIES COMPILE_FLAGS
+        -Wno-parentheses
+        )
