@@ -70,6 +70,9 @@ inline bool ctagSoundProcessorbbeats::process_param_bool( const ProcessData &dat
     return( (bool) my_parm );
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshift-count-overflow"
+
 // --- Helper function: provide logic operations on bytebeats ---
 inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
 {
@@ -124,8 +127,10 @@ inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
   }
 }
 
+
 void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 {
+#pragma GCC diagnostic pop
   // --- Read controllers from GUI or CV about every 5 millisecond and buffer results as private member variables ---
   if( ++cv_counter%220 == 0 )  
   {
