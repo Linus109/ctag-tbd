@@ -126,68 +126,8 @@ inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
 
 void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 {
-static uint16_t cv_counter = 0;   // A global counter for all instances, just to slow down checking of CV and controllers from GUI
-
-  // --- List of lamdas, implementing the algorithms for Bytebeat 1 ---
-  static uint8_t (*beats_P1[])(uint32_t t)  // Modify or add your own ByteBeats below!
-  {
-    [](uint32_t t) -> uint8_t { return (uint8_t)((t&128)); },                       // This is a basic square-wave, toggelling between 0 and 128
-    [](uint32_t t) -> uint8_t { return (uint8_t)(1893*8); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9893*t*(t/t*8)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*8)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*84)^990%t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*87)^990%t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t|t<<245*2199); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((502%t*t|19191/t)%552&t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((9/109)-t^t<<48); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t<<5|t>>7)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t%114|t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t%119^t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<119^t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%92); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%90); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*1|t^119|t*99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t%8|t>>3|t&400)^t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<((t<<t)|(t>>t))<<2); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(6-t&7|t<<999^t*212/t<<2); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%251); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
-  };
-  static const int beatA_max_idx = sizeof(beats_P1)/sizeof(beats_P1[0])-1;  // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
-
-  // --- List of lamdas, implementing the algorithms for Bytebeat 2 ---
-  static uint8_t (*beats_P2[])(uint32_t t)  // Modify or add your own ByteBeats below!
-  {
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t&128); },                        // This is a basic square-wave, toggelling between 0 and 128
-    [](uint32_t t) -> uint8_t { return (uint8_t)(1893*t&8); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9893*t*(t/t*8)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*8)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*84)^990%t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*87)^990%t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t|t<<245*2199); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((502%t*t|19191/t)%552&t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((9/109)-t^t<<48); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t<<5|t>>7)); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t%114|t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t%119^t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<119^t%99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%92); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%90); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*1|t^119|t*99); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t%8|t>>3|t&400)^t); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<((t<<t)|(t>>t))<<2); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(6-t&7|t<<999^t*212/t<<2); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%251); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
-    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
-  };
-  static const int beatB_max_idx = sizeof(beats_P2)/sizeof(beats_P2[0])-1; // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
-
   // --- Read controllers from GUI or CV about every 5 millisecond and buffer results as private member variables ---
-  if( ++cv_counter%220 == 0 )   // To optimize speed this is a static variable for all instances
+  if( ++cv_counter%220 == 0 )  
   {
     // --- Read and buffer controllers for ByteBeat A ---
     stop_beatA = process_param_bool( data, trig_beatA_stop, beatA_stop );
@@ -195,7 +135,7 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     reverse_beatA = process_param_bool( data, trig_beatA_backwards, beatA_backwards );
     if( stop_beatA && reset_beatA )
       reverse_beatA ? t1 = -1 : t1 = 1;      // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_A = process_param( data,cv_beatA_select, beatA_select, beatA_max_idx, 22 );
+    beat_index_A = process_param( data,cv_beatA_select, beatA_select, BEAT_A_MAX_IDX, 22 );
     slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128, 128 );
 
     // --- Read and buffer controllers for ByteBeat B ---
@@ -204,7 +144,7 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     reverse_beatB = process_param_bool( data, trig_beatB_backwards, beatB_backwards );
     if( stop_beatB && reset_beatB )
       reverse_beatB ? t2 = -1 : t2 = 1;    // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_B = process_param( data,cv_beatB_select, beatB_select, beatB_max_idx, 22 );
+    beat_index_B = process_param( data,cv_beatB_select, beatB_select, BEAT_B_MAX_IDX, 22 );
     slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128, 128 );
 
     // --- Read and buffer controllers for mixing ByteBeat A with ByteBeat B ---
