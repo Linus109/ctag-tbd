@@ -28,7 +28,7 @@ using namespace CTAG::SP;
 // data.buf[i * 2 + processCh] = (float)((byte)(t & 128));    // Square wave, working ok!
 
 // --- Helper function: rescale CV or Pot to integer of given range 0...max ---
-inline int ctagSoundProcessorbbeats::process_param( const ProcessData &data, int cv_myparm, int my_parm, int parm_range )
+inline int ctagSoundProcessorbbeats::process_param( const ProcessData &data, int cv_myparm, int my_parm, int parm_range, int max_idx )
 {
   if (cv_myparm != -1)
   {
@@ -38,22 +38,22 @@ inline int ctagSoundProcessorbbeats::process_param( const ProcessData &data, int
       return 0;
   }
   else
-    return my_parm * parm_range / 4095;
+    return my_parm * parm_range / max_idx;
 }
 
 // --- Helper function: rescale CV or Pot to float 0...1.0 (CV is already in correct format, we still keep it inside this method for convenience ---
-inline float ctagSoundProcessorbbeats::process_param_float( const ProcessData &data, int cv_myparm, int my_parm )
+inline float ctagSoundProcessorbbeats::process_param_float( const ProcessData &data, int cv_myparm, int my_parm, int max_idx )
 {
   // printf("%d, %d \n", cv_myparm, my_parm);
   if(cv_myparm != -1)
   {
-    if (data.cv[cv_myparm] >= 0.0)     // This is a bypass solution to avoid negative values in rare cases
+    if (data.cv[cv_myparm] >= 0.0f)     // This is a bypass solution to avoid negative values in rare cases
       return data.cv[cv_myparm];
     else
-      return 0.0;
+      return 0.0f;
   }
   else
-    return my_parm / 4095.0;
+    return my_parm / (float)max_idx;
 }
 
 
@@ -61,7 +61,7 @@ inline bool ctagSoundProcessorbbeats::process_param_bool( const ProcessData &dat
 {
   if (cv_myparm != -1)
   {
-    if (data.cv[cv_myparm] >= 0.0)     // This is a bypass solution to avoid negative values in rare cases
+    if (data.cv[cv_myparm] >= 0.0f)     // This is a bypass solution to avoid negative values in rare cases
       return true;
     else
       return false;
@@ -76,51 +76,51 @@ inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
   switch( logic_operation_id )
   {
     case 0:   // Or operation
-      return ((beat_byte_A | beat_byte_B)-127)/127.0;
+      return ((beat_byte_A | beat_byte_B)-127)/127.0f;
 
     case 1:   // NOR A operation
-      return ((~beat_byte_A | beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A | beat_byte_B)-127)/127.0f;
 
     case 2:   // NOR B operation
-      return ((beat_byte_A | ~beat_byte_B)-127)/127.0;
+      return ((beat_byte_A | ~beat_byte_B)-127)/127.0f;
 
     case 3:   // NOR A-B operation
-      return ((~beat_byte_A | ~beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A | ~beat_byte_B)-127)/127.0f;
 
 
     case 4:   // And operation
-      return ((beat_byte_A & beat_byte_B)-127)/127.0;
+      return ((beat_byte_A & beat_byte_B)-127)/127.0f;
 
     case 5:   // NAND A operation
-      return ((~beat_byte_A & beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A & beat_byte_B)-127)/127.0f;
 
     case 6:   // NAND B operation
-      return ((beat_byte_A & ~beat_byte_B)-127)/127.0;
+      return ((beat_byte_A & ~beat_byte_B)-127)/127.0f;
 
     case 7:   // NAND A-B operation
-      return ((~beat_byte_A & ~beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A & ~beat_byte_B)-127)/127.0f;
 
 
     case 8:   // XOR operation
-      return ((beat_byte_A ^ beat_byte_B)-127)/127.0;
+      return ((beat_byte_A ^ beat_byte_B)-127)/127.0f;
 
     case 9:   // N-XOR  A operation
-      return ((~beat_byte_A ^ beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A ^ beat_byte_B)-127)/127.0f;
 
     case 10:   // N-XOR B operation
-      return ((beat_byte_A ^ ~beat_byte_B)-127)/127.0;
+      return ((beat_byte_A ^ ~beat_byte_B)-127)/127.0f;
 
     case 11:   // N-XOR A-B operation
-      return ((~beat_byte_A ^ ~beat_byte_B)-127)/127.0;
+      return ((~beat_byte_A ^ ~beat_byte_B)-127)/127.0f;
 
 
     case 12:   // Special case: return "left" ByteBeat to optimize transition to regular crossfading, because we use the lower half for our logical operation
-      return (beat_byte_A-127)/127.0;
+      return (beat_byte_A-127)/127.0f;
 
 
     default: // ByteBeatA as result again, just in case, as a "catch all" ;-)
       // printf("Encountered unexpected Id %d for bitwise operation on ByteBeats\n", logic_operation_id );
-      return (beat_byte_A-127)/127.0;
+      return (beat_byte_A-127)/127.0f;
   }
 }
 
@@ -129,60 +129,60 @@ void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 static uint16_t cv_counter = 0;   // A global counter for all instances, just to slow down checking of CV and controllers from GUI
 
   // --- List of lamdas, implementing the algorithms for Bytebeat 1 ---
-  static byte (*beats_P1[])(uint32_t t)  // Modify or add your own ByteBeats below!
+  static uint8_t (*beats_P1[])(uint32_t t)  // Modify or add your own ByteBeats below!
   {
-    [](uint32_t t) -> byte { return (byte)((t&128)); },                       // This is a basic square-wave, toggelling between 0 and 128
-    [](uint32_t t) -> byte { return (byte)(1893*8); },
-    [](uint32_t t) -> byte { return (byte)(9893*t*(t/t*8)); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*8)); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*84)^990%t); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*87)^990%t); },
-    [](uint32_t t) -> byte { return (byte)(t>>t|t<<245*2199); },
-    [](uint32_t t) -> byte { return (byte)((502%t*t|19191/t)%552&t); },
-    [](uint32_t t) -> byte { return (byte)((9/109)-t^t<<48); },
-    [](uint32_t t) -> byte { return (byte)(t*(t<<5|t>>7)); },
-    [](uint32_t t) -> byte { return (byte)(t%114|t%99); },
-    [](uint32_t t) -> byte { return (byte)(t%119^t%99); },
-    [](uint32_t t) -> byte { return (byte)(t<<119^t%99); },
-    [](uint32_t t) -> byte { return (byte)(t*120<<t%92); },
-    [](uint32_t t) -> byte { return (byte)(t*120<<t%90); },
-    [](uint32_t t) -> byte { return (byte)(t*1|t^119|t*99); },
-    [](uint32_t t) -> byte { return (byte)(t*(t%8|t>>3|t&400)^t); },
-    [](uint32_t t) -> byte { return (byte)(t<<((t<<t)|(t>>t))<<2); },
-    [](uint32_t t) -> byte { return (byte)(6-t&7|t<<999^t*212/t<<2); },
-    [](uint32_t t) -> byte { return (byte)(t^t%251); },
-    [](uint32_t t) -> byte { return (byte)(t^t%449); },
-    [](uint32_t t) -> byte { return (byte)((t^t%449)+22); },
-    [](uint32_t t) -> byte { return (byte)((t^t%249)-22); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((t&128)); },                       // This is a basic square-wave, toggelling between 0 and 128
+    [](uint32_t t) -> uint8_t { return (uint8_t)(1893*8); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9893*t*(t/t*8)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*8)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*84)^990%t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*87)^990%t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t|t<<245*2199); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((502%t*t|19191/t)%552&t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((9/109)-t^t<<48); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t<<5|t>>7)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t%114|t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t%119^t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<119^t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%92); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%90); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*1|t^119|t*99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t%8|t>>3|t&400)^t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<((t<<t)|(t>>t))<<2); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(6-t&7|t<<999^t*212/t<<2); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%251); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
   };
   static const int beatA_max_idx = sizeof(beats_P1)/sizeof(beats_P1[0])-1;  // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
 
   // --- List of lamdas, implementing the algorithms for Bytebeat 2 ---
-  static byte (*beats_P2[])(uint32_t t)  // Modify or add your own ByteBeats below!
+  static uint8_t (*beats_P2[])(uint32_t t)  // Modify or add your own ByteBeats below!
   {
-    [](uint32_t t) -> byte { return (byte)(t&128); },                       // This is a basic square-wave, toggelling between 0 and 128
-    [](uint32_t t) -> byte { return (byte)(1893*t&8); },
-    [](uint32_t t) -> byte { return (byte)(9893*t*(t/t*8)); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*8)); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*84)^990%t); },
-    [](uint32_t t) -> byte { return (byte)(9*t*(t/t*87)^990%t); },
-    [](uint32_t t) -> byte { return (byte)(t>>t|t<<245*2199); },
-    [](uint32_t t) -> byte { return (byte)((502%t*t|19191/t)%552&t); },
-    [](uint32_t t) -> byte { return (byte)((9/109)-t^t<<48); },
-    [](uint32_t t) -> byte { return (byte)(t*(t<<5|t>>7)); },
-    [](uint32_t t) -> byte { return (byte)(t%114|t%99); },
-    [](uint32_t t) -> byte { return (byte)(t%119^t%99); },
-    [](uint32_t t) -> byte { return (byte)(t<<119^t%99); },
-    [](uint32_t t) -> byte { return (byte)(t*120<<t%92); },
-    [](uint32_t t) -> byte { return (byte)(t*120<<t%90); },
-    [](uint32_t t) -> byte { return (byte)(t*1|t^119|t*99); },
-    [](uint32_t t) -> byte { return (byte)(t*(t%8|t>>3|t&400)^t); },
-    [](uint32_t t) -> byte { return (byte)(t<<((t<<t)|(t>>t))<<2); },
-    [](uint32_t t) -> byte { return (byte)(6-t&7|t<<999^t*212/t<<2); },
-    [](uint32_t t) -> byte { return (byte)(t^t%251); },
-    [](uint32_t t) -> byte { return (byte)(t^t%449); },
-    [](uint32_t t) -> byte { return (byte)((t^t%449)+22); },
-    [](uint32_t t) -> byte { return (byte)((t^t%249)-22); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t&128); },                        // This is a basic square-wave, toggelling between 0 and 128
+    [](uint32_t t) -> uint8_t { return (uint8_t)(1893*t&8); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9893*t*(t/t*8)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*8)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*84)^990%t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(9*t*(t/t*87)^990%t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t|t<<245*2199); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((502%t*t|19191/t)%552&t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((9/109)-t^t<<48); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t<<5|t>>7)); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t%114|t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t%119^t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<119^t%99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%92); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*120<<t%90); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*1|t^119|t*99); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t%8|t>>3|t&400)^t); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t<<((t<<t)|(t>>t))<<2); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(6-t&7|t<<999^t*212/t<<2); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%251); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
+    [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
   };
   static const int beatB_max_idx = sizeof(beats_P2)/sizeof(beats_P2[0])-1; // We calculate the number of list-entries, so that adding of algorithms does not need adjusting lenghts...
 
@@ -195,8 +195,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     reverse_beatA = process_param_bool( data, trig_beatA_backwards, beatA_backwards );
     if( stop_beatA && reset_beatA )
       reverse_beatA ? t1 = -1 : t1 = 1;      // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_A = process_param( data,cv_beatA_select, beatA_select, beatA_max_idx );
-    slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128 );
+    beat_index_A = process_param( data,cv_beatA_select, beatA_select, beatA_max_idx, 22 );
+    slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128, 128 );
 
     // --- Read and buffer controllers for ByteBeat B ---
     stop_beatB = process_param_bool( data, trig_beatB_stop, beatB_stop );
@@ -204,8 +204,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
     reverse_beatB = process_param_bool( data, trig_beatB_backwards, beatB_backwards );
     if( stop_beatB && reset_beatB )
       reverse_beatB ? t2 = -1 : t2 = 1;    // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_B = process_param( data,cv_beatB_select, beatB_select, beatB_max_idx );
-    slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128 );
+    beat_index_B = process_param( data,cv_beatB_select, beatB_select, beatB_max_idx, 22 );
+    slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128, 128 );
 
     // --- Read and buffer controllers for mixing ByteBeat A with ByteBeat B ---
     logic_mixes_allowed = process_param_bool(data, trig_allow_logic_mixes, allow_logic_mixes);
@@ -219,10 +219,10 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
       if( xfade_val_int < 2048 )                       // Use logical operation in first half of range of pot
         logic_operation_id = (int)(xfade_val_int * 13 / 2047);  // We multiply with 13 instead of normally 12, to avoid rounding errors with narrow range here
       else
-        xfade_val = (xfade_val_int-2048)/2047.0;        // We expand 50%-100% of pot to 0-100% for normal crossfade
+        xfade_val = (xfade_val_int-2048)/2047.0f;        // We expand 50%-100% of pot to 0-100% for normal crossfade
     }
     else
-      xfade_val = process_param_float(data, cv_xFadeA_B, xFadeA_B);
+      xfade_val = process_param_float(data, cv_xFadeA_B, xFadeA_B, 4095);
   }
   // --- This is our main loop, where the generation and mixing of ByteBeats takes place ---
   for (uint32_t i = 0; i < bufSz; i++)
@@ -235,8 +235,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
         reverse_beatA ? t1-- : t1++;    // Avoid devision by zero for some algos
       if( !stop_beatA )
       {
-        beat_byte_A = (int) beats_P1[beat_index_A](t1);       // We may will also need the numeric value for logic operations on the ByteBeats
-        beat_val_A = (float) ((int) beat_byte_A - 127) / 127.0; // beat_val_A: private member, so we buffer the result
+        beat_byte_A = beats_P1[beat_index_A](t1);       // We may will also need the numeric value for logic operations on the ByteBeats
+        beat_val_A = (float) (beat_byte_A - 127) / 127.0f; // beat_val_A: private member, so we buffer the result
         reverse_beatA ? t1-- : t1++;   // Decrement or increment iterator for ByteBeat1 algorithm
       }
     }
@@ -250,8 +250,8 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
         reverse_beatA ? t2-- : t2++;    // Avoid devision by zero for some algos
       if( !stop_beatB )
       {
-        beat_byte_B = (int)beats_P2[beat_index_B](t2);       // We may will also need the numeric value for logic operations on the ByteBeats
-        beat_val_B = (float)((int) beat_byte_B - 127) / 127.0; // beat_val_B: private member, so we buffer the result
+        beat_byte_B = beats_P2[beat_index_B](t2);       // We may will also need the numeric value for logic operations on the ByteBeats
+        beat_val_B = (float)(beat_byte_B - 127) / 127.0f; // beat_val_B: private member, so we buffer the result
         reverse_beatB ? t2-- : t2++;   // Decrement or increment iterator for ByteBeat1 algorithm
       }
     }
@@ -263,10 +263,10 @@ static uint16_t cv_counter = 0;   // A global counter for all instances, just to
       if( xfade_val_int <= 2047 )         // We are in the lower 50% of the Pot or GUI slider
         data.buf[i*2 + processCh] = logic_operation_on_beat();                              // Perform logical operations on ByteBeats in first 50% of PorRange for XFade!
       else                                                                                    // We already rescaled the xfade_val when reading controllers!
-        data.buf[i*2 + processCh] = beat_val_A*(1.0-xfade_val) + beat_val_B*xfade_val;        // Mix both ByteBeats, depending on XFade-factor
+        data.buf[i*2 + processCh] = beat_val_A*(1.0f-xfade_val) + beat_val_B*xfade_val;        // Mix both ByteBeats, depending on XFade-factor
     }
     else
-      data.buf[i*2 + processCh] = beat_val_A*(1.0-xfade_val) + beat_val_B*xfade_val;         // Mix both ByteBeats, depending on XFade-factor
+      data.buf[i*2 + processCh] = beat_val_A*(1.0f-xfade_val) + beat_val_B*xfade_val;         // Mix both ByteBeats, depending on XFade-factor
   }
 }
 

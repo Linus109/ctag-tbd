@@ -21,12 +21,12 @@
         },
         {
           "id": "beatA_select",
-          "current": 2047,
+          "current": 11,
           "cv": -1
         },
         {
           "id": "beatA_pitch",
-          "current": 2047,
+          "current": 64,
           "cv": -1
         },
         {
@@ -46,12 +46,12 @@
         },
         {
           "id": "beatB_select",
-          "current": 2047,
+          "current": 11,
           "cv": -1
         },
         {
           "id": "beatB_pitch",
-          "current": 2047,
+          "current": 64,
           "cv": -1
         },
         {

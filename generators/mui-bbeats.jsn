@@ -8,8 +8,8 @@
              {"id":"beatA_stop","name":"BeatA stop","type":"bool"},
              {"id":"beatA_backwards","name":"BeatA backwards","type":"bool"},
              
-             {"id":"beatA_select","name":"BeatA select","type":"int","min":0,"max":4095,"step":1},
-             {"id":"beatA_pitch","name":"BeatA pitch","type":"int","min":0,"max":4095,"step":1}
+             {"id":"beatA_select","name":"BeatA select","type":"int","min":0,"max":22,"step":1},
+             {"id":"beatA_pitch","name":"BeatA pitch","type":"int","min":0,"max":128,"step":1}
           ]
       },
       {
@@ -19,8 +19,8 @@
              {"id":"beatB_stop","name":"BeatB stop","type":"bool"},
              {"id":"beatB_backwards","name":"BeatB backwards","type":"bool"},
 
-            {"id":"beatB_select","name":"BeatB select","type":"int","min":0,"max":4095,"step":1},
-            {"id":"beatB_pitch","name":"BeatB pitch","type":"int","min":0,"max":4095,"step":1}
+            {"id":"beatB_select","name":"BeatB select","type":"int","min":0,"max":22,"step":1},
+            {"id":"beatB_pitch","name":"BeatB pitch","type":"int","min":0,"max":128,"step":1}
          ] 
       },
       {

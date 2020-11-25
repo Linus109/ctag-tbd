@@ -12,20 +12,20 @@ namespace CTAG {
         private:
             virtual void knowYourself() override;
 
-            inline static int process_param( const ProcessData &data, int cv_myparm, int my_parm, int parm_range ); // rescale incoming data
-            inline static float process_param_float( const ProcessData &data, int cv_myparm, int my_parm ); // rescale incoming data to 0.0-1.0
+            inline static int process_param( const ProcessData &data, int cv_myparm, int my_parm, int parm_range, int max_idx ); // rescale incoming data
+            inline static float process_param_float( const ProcessData &data, int cv_myparm, int my_parm, int max_idx ); // rescale incoming data to 0.0-1.0
             inline static bool process_param_bool( const ProcessData &data, int cv_myparm, int my_parm ); // rescale incoming data to bool
             inline float logic_operation_on_beat( );   // Logical operation on the bytebeats
 
             bool logic_mixes_allowed = false;
-            float xfade_val = 0.0;      // This is our value to Xfade between ByteBeatA and ByteBeatB
+            float xfade_val = 0.0f;      // This is our value to Xfade between ByteBeatA and ByteBeatB
             int xfade_val_int = 0;      // We also need to remember the integer value of the Xfader to select logical operation on the first 25% of the fader if activated
 
             // private attributes could go here
-            int beat_byte_A = 0;  // Currently calculated or temporarily stored ByteBeatA
-            int beat_byte_B = 0;  // Currently calculated or temporarily stored ByteBeatB
-            float beat_val_A = 0.0;      // Currently calculated or temporarily stored audio value for ByteBeatA
-            float beat_val_B = 0.0;      // Currently calculated or temporarily stored audio value for ByteBeatB
+            uint8_t beat_byte_A = 0;  // Currently calculated or temporarily stored ByteBeatA
+            uint8_t beat_byte_B = 0;  // Currently calculated or temporarily stored ByteBeatB
+            float beat_val_A = 0.0f;      // Currently calculated or temporarily stored audio value for ByteBeatA
+            float beat_val_B = 0.0f;      // Currently calculated or temporarily stored audio value for ByteBeatB
             uint32_t t1 = 0;             // Iterator for ByteBeat1
             uint32_t t2 = 0;             // Iterator for ByteBeat2
 
