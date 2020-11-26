@@ -130,30 +130,38 @@ inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
 
 void ctagSoundProcessorbbeats::Process(const ProcessData &data)
 {
-#pragma GCC diagnostic pop
-  // --- Read controllers from GUI or CV about every 5 millisecond and buffer results as private member variables ---
-  if( ++cv_counter%220 == 0 )  
+  // --- Read triggers or bools from GUI about every 3 milliseconds and buffer results as private member variables ---
+  if( ++cv_counter%11 == 0 )
+  {
+    // --- Read and buffer options for ByteBeat A ---
+    stop_beatA = process_param_bool( data, trig_beatA_stop, beatA_stop, e_stop_beatA );
+    reset_beatA = process_param_bool( data, trig_beatA_reset_on_stop, beatA_reset_on_stop, e_reset_beatA );
+    reverse_beatA = process_param_bool( data, trig_beatA_backwards, beatA_backwards, e_reverse_beatA );
+
+    // --- Read and buffer option for ByteBeat B ---
+    stop_beatB = process_param_bool( data, trig_beatB_stop, beatB_stop, e_stop_beatB );
+    reset_beatB = process_param_bool( data, trig_beatB_reset_on_stop, beatB_reset_on_stop, e_reset_beatB );
+    reverse_beatB = process_param_bool( data, trig_beatB_backwards, beatB_backwards, e_reverse_beatB );
+
+    // --- Read and buffer option for XFade-mode ---
+    logic_mixes_allowed = process_param_bool(data, trig_allow_logic_mixes, allow_logic_mixes, e_logic_mixes_allowed );
+  }
+  // --- Read controllers from GUI or CV about every 16 milliseconds and buffer results as private member variables ---
+  if( ++cv_counter%100 == 0 )
   {
     // --- Read and buffer controllers for ByteBeat A ---
-    stop_beatA = process_param_bool( data, trig_beatA_stop, beatA_stop );
-    reset_beatA = process_param_bool( data, trig_beatA_reset_on_stop, beatA_reset_on_stop );
-    reverse_beatA = process_param_bool( data, trig_beatA_backwards, beatA_backwards );
     if( stop_beatA && reset_beatA )
       reverse_beatA ? t1 = -1 : t1 = 1;      // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
     beat_index_A = process_param( data,cv_beatA_select, beatA_select, BEAT_A_MAX_IDX, 22 );
     slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128, 128 );
 
     // --- Read and buffer controllers for ByteBeat B ---
-    stop_beatB = process_param_bool( data, trig_beatB_stop, beatB_stop );
-    reset_beatB = process_param_bool( data, trig_beatB_reset_on_stop, beatB_reset_on_stop );
-    reverse_beatB = process_param_bool( data, trig_beatB_backwards, beatB_backwards );
     if( stop_beatB && reset_beatB )
       reverse_beatB ? t2 = -1 : t2 = 1;    // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
     beat_index_B = process_param( data,cv_beatB_select, beatB_select, BEAT_B_MAX_IDX, 22 );
     slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128, 128 );
 
     // --- Read and buffer controllers for mixing ByteBeat A with ByteBeat B ---
-    logic_mixes_allowed = process_param_bool(data, trig_allow_logic_mixes, allow_logic_mixes);
     if( logic_mixes_allowed )
     {
       if (cv_xFadeA_B != -1)
