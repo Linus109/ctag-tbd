@@ -44,7 +44,6 @@ inline int ctagSoundProcessorbbeats::process_param( const ProcessData &data, int
 // --- Helper function: rescale CV or Pot to float 0...1.0 (CV is already in correct format, we still keep it inside this method for convenience ---
 inline float ctagSoundProcessorbbeats::process_param_float( const ProcessData &data, int cv_myparm, int my_parm, int max_idx )
 {
-  // printf("%d, %d \n", cv_myparm, my_parm);
   if(cv_myparm != -1)
   {
     if (data.cv[cv_myparm] >= 0.0f)     // This is a bypass solution to avoid negative values in rare cases
@@ -57,21 +56,27 @@ inline float ctagSoundProcessorbbeats::process_param_float( const ProcessData &d
 }
 
 
-inline bool ctagSoundProcessorbbeats::process_param_bool( const ProcessData &data, int cv_myparm, int my_parm )
+inline bool ctagSoundProcessorbbeats::process_param_bool( const ProcessData &data, int trig_myparm, int my_parm, int prev_trig_state_id )
 {
-  if (cv_myparm != -1)
+  if (trig_myparm != -1)
   {
-    if (data.cv[cv_myparm] >= 0.0f)     // This is a bypass solution to avoid negative values in rare cases
-      return true;
-    else
-      return false;
+    if( data.trig[trig_myparm] != prev_trig_state[prev_trig_state_id] )
+    {
+      if (data.trig[trig_myparm] > 0 )     // This is a bypass solution to avoid negative values in rare cases
+        prev_trig_state[prev_trig_state_id] = data.trig[trig_myparm];   // Trigger was different from as last time, remember new value
+      else
+        prev_trig_state[prev_trig_state_id] = 1;                        // Trigger is off when 1!
+    }
   }
   else
-    return( (bool) my_parm );
+  {
+    (my_parm) ? prev_trig_state[prev_trig_state_id] = 0 : prev_trig_state[prev_trig_state_id] = 1;  // Set Trigger to 0 if on from GUI
+  }
+  if( prev_trig_state[prev_trig_state_id] == 0 )                        // Trigger is on when 0!
+    return true;
+  else
+    return false;
 }
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshift-count-overflow"
 
 // --- Helper function: provide logic operations on bytebeats ---
 inline float ctagSoundProcessorbbeats::logic_operation_on_beat()
@@ -152,13 +157,13 @@ void ctagSoundProcessorbbeats::Process(const ProcessData &data)
     // --- Read and buffer controllers for ByteBeat A ---
     if( stop_beatA && reset_beatA )
       reverse_beatA ? t1 = -1 : t1 = 1;      // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_A = process_param( data,cv_beatA_select, beatA_select, BEAT_A_MAX_IDX, 22 );
+    beat_index_A = process_param( data,cv_beatA_select, beatA_select, BEAT_A_MAX_IDX, BEAT_A_MAX_IDX );
     slow_down_A_factor = 129 - process_param( data,cv_beatA_pitch, beatA_pitch, 128, 128 );
 
     // --- Read and buffer controllers for ByteBeat B ---
     if( stop_beatB && reset_beatB )
       reverse_beatB ? t2 = -1 : t2 = 1;    // reset incrementor for bytebeat algorithms, avoid 0 to not devide by zero
-    beat_index_B = process_param( data,cv_beatB_select, beatB_select, BEAT_B_MAX_IDX, 22 );
+    beat_index_B = process_param( data,cv_beatB_select, beatB_select, BEAT_B_MAX_IDX, BEAT_B_MAX_IDX );
     slow_down_B_factor = 129 - process_param( data,cv_beatB_pitch, beatB_pitch, 128, 128 );
 
     // --- Read and buffer controllers for mixing ByteBeat A with ByteBeat B ---

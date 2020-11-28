@@ -1,8 +1,8 @@
 #include <atomic>
 #include "ctagSoundProcessor.hpp"
 
-#define BEAT_A_MAX_IDX 22     // Max Index for list of ByteBeat 1
-#define BEAT_B_MAX_IDX 22     // Max Index for list of ByteBeat 2
+#define BEAT_A_MAX_IDX 54     // Max Index for list of ByteBeat 1
+#define BEAT_B_MAX_IDX 55     // Max Index for list of ByteBeat 2
 
 
 namespace CTAG {
@@ -80,10 +80,44 @@ namespace CTAG {
               [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%251); },
               [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
               [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
-              [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); }
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*((t>>12|t>>8)&63&t>>4)); },          // Matt's rhythmical beats start here
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*((t>>12|t>>8)&61&t>>11)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*((t>>12|t>>8)&59&t>>9)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(((t&15)*(-t&15)^!(t&16)-1)+32); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t%100>>t/200%100)*255); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(((43|4|25|66)/t>>89)+(t&2)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t/11)*(t/16|6+7)/9); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(((t*3|t>>361)+139)<<49); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(((t%16)<<6)/8|t%255|t-100); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((-t/100|(t*3))^(t*3&(t>>3))&t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((-t/100|(t&1))^(t*3&(t>>39))&t>>99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<6/(8080+t)&900+t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<2&(t*(7+(1^t>>6|9%5|4)))); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t%24^2&(t*(7+(1^t>>9|9%3|4)))); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t|(t>>9|t>>7))*t&(t>>11|t>>9)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t|(t>>11|t>>55))^t%((t>>1|t>>22)|t>>9)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3&(t>>7)+t*9&(t*4<<1)); }, // 20201128 MB: double entry to prevent Segfault as below!
+              // ??? [](uint32_t t) -> uint8_t { return (uint8_t)(t|(t<<1|t<<2)%t%(t&302|t%2)); }, // ### ??? SEGFAULT encountered!
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3&(t>>7)+t*9&(t*4<<1)); }, // 20201128 MB: double entry to prevent Segfault as below!
+              // ??? [](uint32_t t) -> uint8_t { return (uint8_t)((t|(t<<320|t<<9))%t%(t&309|t%2)); },   // ### ??? SEGFAULT encountered!
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3&(t>>7)+t*9&(t*4<<1)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t>>3)|80%t*t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t>>t>>t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t>>t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t&t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t-t^t)^t|t^202&t|t<<183); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t-246|t+9*t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(((t^110/256)>>(t^956*8000/256&8)|t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t-t%t)|t%158/112>>91|(t%(41*241<<t))^t>>8&t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t>>t+2)<<(8*t)*4); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3|t/3|t*99|t/2); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3|t/3|t*99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(44>>(t>>t+2)<<(8*t)*4); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t&t&129|233-244%t>>t); },
             };
             // --- List of lamdas, implementing the algorithms for Bytebeat 2 ---
-            static constexpr uint8_t (*beats_P2[BEAT_A_MAX_IDX+1])(uint32_t t)  // Modify or add your own ByteBeats below!
+            static constexpr uint8_t (*beats_P2[BEAT_B_MAX_IDX+1])(uint32_t t)  // Modify or add your own ByteBeats below!
             {
               [](uint32_t t) -> uint8_t { return (uint8_t)(t&128); },                        // This is a basic square-wave, toggelling between 0 and 128
               [](uint32_t t) -> uint8_t { return (uint8_t)(1893*t&8); },
@@ -108,6 +142,39 @@ namespace CTAG {
               [](uint32_t t) -> uint8_t { return (uint8_t)(t^t%449); },
               [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%449)+22); },
               [](uint32_t t) -> uint8_t { return (uint8_t)((t^t%249)-22); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t&t/1219); },                      // Matt's rhythmical beats start here
+              [](uint32_t t) -> uint8_t { return (uint8_t)(4448-(t>>t^1)<<(8*t)*1); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*t+2>>t&t|(t^9)+1); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t%255^t%64); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t%(t|2+t-39)*1)>>(t&28)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3|t^3|t*99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*333|t>>3|t*1); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*333|t>>3|t*11); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*3333|t>>3|t*11); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t^3333|t>>18|t/113); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((6622%t*484)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(7-t%7|t<<999|t*212%t<<3); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<5|t>>2&t%99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<(t>>t*169)|t>>t|t/20); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<5|t>>2-t%99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t&t/269%t|t/223); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t&t/261&t|t/225); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t&t/1269%t&t/223); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*(t<<1|t>>8)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t%100&t/200%100)*200); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(7-t%7|t<<999|t*212%t<<2); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t/111*t>>18*t/999)|t<<2); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t*t/38%216); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t^(98&t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t^(93/t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t+39)|t-t|t-(25*t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)((t+39)|t&t|t-(22*t)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t+208/109-t|t^t|97%t>>t); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t^57+t%149|t%(251&103)); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t/333|t>>18*t/999); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t/666*t>>18*t/999); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t<<5|t>>2+t%99); },
+              [](uint32_t t) -> uint8_t { return (uint8_t)(t-85-(98>>t)|(22*80-t)*t|t/215); },
             };
 #pragma GCC diagnostic pop
             // autogenerated code here
@@ -124,7 +191,11 @@ namespace CTAG {
             atomic<int32_t> beatB_pitch, cv_beatB_pitch;
             atomic<int32_t> allow_logic_mixes, trig_allow_logic_mixes;
             atomic<int32_t> xFadeA_B, cv_xFadeA_B;
-	          // sectionHpp
+            atomic<int32_t> destination, cv_destination;
+            atomic<int32_t> loopEG, trig_loopEG;
+            atomic<int32_t> attack, cv_attack;
+            atomic<int32_t> decay, cv_decay;
+            // sectionHpp
         };
     }
 }
